@@ -1,0 +1,48 @@
+pytest - helps with writing tests, and running tests (whether or not written with pytest). Can also run a doc test. (Can pull test cases from docstring examples?)
+
+Test fails if exceptions are uncaught. Can use assert statement to raise exceptions - syntax 
+>>> assert test_case == test_answer
+(pytest overrides assert to give more useful output)
+
+pytest gathers tests from files named test_*.py or *_test.py - looks for functions prefixed with test_ (I need to learn more about structuring larger python projects)
+If first assert statement in a function fails, other asserts are not run. Multiple asserts are run if the preceding one passes.
+
+Parametrising tests 
+===================
+
+Can use the same structure to make lots of test functinos to test same functionality with different parameters. 
+Decorator takes a list of tuples of arguments and answer.
+@pytest.mark.parametrize('x,y,ans', [
+    ( ... ),
+    ( ... ),
+])
+
+It is possible to name each test as well, which could be useful
+Can add an extra comma to the end of lists!
+
+Sometimes want exceptions, eg to make sure errors are handled appropriately.
+
+Fixtures
+========
+
+Eg caching data used across multiple tests, can be combined etc 
+Implemented as a decorator; name is name of function, return value is value of fixture. 
+@pytest.fixture
+pytest will find this, match up the data and the tests and play nicely. 
+
+Note that it is possible to change fixtures which might break things if done incautiously 
+
+Test the tests - make sure fixtures return expected data type, sane etc 
+
+Mocking 
+=======
+If you don't want a certain part of code to run while you're testing, can use mocking to put something else (safer) in there, and then ask if it was called. 
+You do need to know what the internal code looks like (unlike with other tests that just test interfaces)
+
+Generally want to test each thing individually (quick), but also the whole stack (integration). Might run whole stack tests less frequently since they take longer.
+
+Auto-generate tests
+===================
+
+Will run a large set of attempts to break the code; returns a minimal example to show you what breaks it if need be. 
+Has a history memory - will try the ones that broke last time first ;)

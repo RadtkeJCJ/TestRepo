@@ -1,0 +1,48 @@
+A tried and tested workflow for software quality assurance
+==========================================================
+
+Introduction
+============
+Using conways game of life as test software - a "zero player game", cellular automaton.
+A cell "survives" with 2 or 3 neighbours
+It "births" with 3 neighbours
+(Inc diagonal neighbours)
+
+Coding standards
+================
+Good for consistency within and across projects. Can be automated. Formatters include black, yapf. Atom (with plugins) will automatically reformat on saving...  
+Can catching basic syntax errors
+
+Testing
+=======
+Basics - use some tests, eg with pytest. Large topic in its own right.
+
+Coverage - how much of the code is tested by the tests? Pytest calculations if given an initialization file
+
+
+Static Analysis
+===============
+
+Analyse code before execution, can check syntax, type checking. detect bugs before they run. Integrate with editors ideal
+
+eg a linter such as flake8, coala
+can check:
+
+- stray variables (typos)
+- spacing issues
+- unused imports
+- probably more!
+
+Type checking
+=============
+
+From python 3.6 introduced type hints - eg
+def function(a: int):
+    '''a is an integer'''
+    return a
+
+
+Automation
+==========
+Makes life much easier, or harder to break stuff. Continuous integration. Runs all the above stuff automatically . yaml can do this, need to push to gitlab.
+[ I should work through the automation 3 slide since my laptop is being very slow....]
